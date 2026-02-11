@@ -1,0 +1,164 @@
+## Kotak Saran Pengaduan Pelayanan - Disbekal Form
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotak Saran Pengaduan Pelayanan - Dinas Pembekalan TNI AL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            background-color: #003087; /* Biru TNI */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .banner {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .address {
+            font-size: 16px;
+        }
+        .whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .whatsapp:hover {
+            background-color: #128C7E;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        button {
+            background-color: #dc3545; /* Merah untuk NO Korupsi */
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">Kotak Masukan Saran & Pengaduan Pelayanan</div>
+        <div class="address">Dinas Pembekalan TNI Angkatan Laut<br>
+        Mabes TNI AL Gedung B1 Lantai 5<br>
+        Cilangkap, Jakarta Timur</div>
+        <a href="https://wa.me/6281345307924?text=Saya ingin menyampaikan saran/pengaduan pelayanan Disbekal TNI AL" class="whatsapp" target="_blank">
+            Hubungi WhatsApp: 0813 4530 7924
+        </a>
+    </header>
+
+    <div class="success" id="successMsg">
+        Terima kasih! Saran/pengaduan Anda telah berhasil dikirim. Kami akan tindak lanjuti segera.
+    </div>
+
+    <form id="complaintForm">
+        <label for="name">Nama Lengkap:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email (opsional):</label>
+        <input type="email" id="email" name="email">
+
+        <label for="phone">No. Telepon/WhatsApp:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="type">Jenis Masukan:</label>
+        <select id="type" name="type" required>
+            <option value="">Pilih Jenis</option>
+            <option value="saran">Saran Pelayanan</option>
+            <option value="pengaduan">Pengaduan Pelayanan</option>
+            <option value="integritas">Laporan Integritas/Korupsi</option>
+        </select>
+
+        <label for="subject">Subjek:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Isi Masukan/Pengaduan:</label>
+        <textarea id="message" name="message" required placeholder="Jelaskan secara rinci masalah atau saran Anda..."></textarea>
+
+        <button type="submit">Kirim Pengaduan</button>
+    </form>
+
+    <footer>
+        <p>Zona Integritas NO Korupsi, NO Gratifikasi, PUNG LI!</p>
+    </footer>
+
+    <script>
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulasi pengiriman (ganti dengan backend nyata seperti EmailJS, Formspree, atau server PHP)
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Di sini bisa kirim ke WhatsApp API, email, atau database
+            console.log('Data dikirim:', data); // Untuk demo
+            
+            // Tampilkan pesan sukses
+            document.getElementById('successMsg').style.display = 'block';
+            this.reset();
+            
+            // Opsional: Buka WhatsApp dengan pesan
+            const msg = `Pengaduan dari: ${data.name}\nSubjek: ${data.subject}\nIsi: ${data.message}`;
+            window.open(`https://wa.me/6281345307924?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
